@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        sort(nums.begin(), nums.end()); //sorting from beginning to end
+        int n = nums.size();
+        vector<vector<int>> result;
+        for (int i = 0; i < n; i++) {
+            int* ptr_a = &nums[i];
+            int* ptr_b = &nums[i+1];
+            int* ptr_c = &nums[n-1];
+            if (i > 0 && nums[i] ==  nums[i-1]) continue;
+            while (ptr_b < ptr_c) {
+                if (*ptr_a + *ptr_b + *ptr_c == 0) {
+                    result.push_back({*ptr_a, *ptr_b, *ptr_c});
+                    ptr_b++;
+                    ptr_c--;
+                    while (ptr_b < ptr_c && *ptr_b == *(ptr_b-1)) ptr_b++;
+                    while (ptr_b < ptr_c && *ptr_c == *(ptr_c+1)) ptr_c--;
+                }
+                else if (*ptr_a + *ptr_b + *ptr_c > 0) {
+                    ptr_c--;
+                    
+                }
+                else {
+                    ptr_b++;
+                    
+                }
+            }
+        }
+        return result;
+    }
+};
