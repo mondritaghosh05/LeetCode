@@ -1,0 +1,22 @@
+class Solution {
+    public:
+        vector<int> twoSum(vector<int>& numbers, int target) {
+            int last_index = numbers.size() - 1;
+            int *ptr_a = &numbers[0];
+            int *ptr_b = &numbers[last_index];
+            int current_sum = 0;
+            while (ptr_a < ptr_b) {
+                current_sum = *ptr_a + *ptr_b;
+                if (current_sum == target) break;
+                if (current_sum > target) {
+                    ptr_b--;
+                }
+                else {
+                    ptr_a++;
+                }
+            }
+            int index1 = ptr_a - &numbers[0] + 1;
+            int index2 = ptr_b - &numbers[0] + 1;
+            return {index1, index2};
+    }
+};
