@@ -1,0 +1,25 @@
+class Solution {
+public:
+    double findMaxAverage(vector<int>& nums, int k) {
+        int current_sum = 0;
+        double current_average = 0;
+        int n = nums.size();
+        int left = 0;
+        int right = k - left - 1;
+        for (int i = left; i <= right; i++) {
+            current_sum += nums[i];
+            current_average = (double)current_sum/k;
+        }
+        double max_average = current_average;
+        left++;
+        right++;
+        while (right < n) {
+            current_sum += nums[right] - nums[left-1];
+            current_average = (double)current_sum/k;
+            max_average = max(max_average, current_average);
+            left++;
+            right++;
+        }
+        return max_average;     
+    }
+};
