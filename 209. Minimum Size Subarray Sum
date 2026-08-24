@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int minSubArrayLen(int target, vector<int>& nums) {
+        int left = 0;
+        int right = 0;
+        int current_sum = 0;
+        int min_subarray_len = INT_MAX;
+        while (right < nums.size()) {
+            current_sum += nums[right];
+            while (current_sum >= target) {
+                min_subarray_len = min(min_subarray_len, right - left + 1);
+                current_sum -= nums[left];
+                left++;
+            }
+            right++;
+        }
+        return min_subarray_len == INT_MAX ? 0 : min_subarray_len;
+    }
+};
