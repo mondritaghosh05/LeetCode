@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool extra (int n, unordered_map <int, int>& freq) {
+        int sum = 0;
+        while (n >= 1) {
+            int r = n%10;
+            sum += r*r;
+            n = n/10;
+        }
+        freq[sum]++;
+        if (freq[sum] > 1) return false;
+        if (sum == 1) return true;
+        return extra(sum, freq);
+    }
+    bool isHappy(int n) {
+        unordered_map <int, int> freq;
+        return extra(n, freq);
+    }
+};
