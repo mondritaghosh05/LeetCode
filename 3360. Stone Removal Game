@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool canAliceWin(int n) {
+        if (n < 10) return false;
+        if (n == 10) return true;
+        if (n > 10) {
+            for (int i = 0; i < 10; i++) {
+                int stones = 10 - i;
+                if (i % 2 == 0) {
+                    if (n >= stones) {
+                        n = n - stones;
+                    }
+                    else {
+                        return false;
+                    } 
+                }
+                else {
+                    if (n >= stones) {
+                        n = n - stones;
+                    }
+                    else {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+};
